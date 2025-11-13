@@ -2,21 +2,30 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { 
+  FaInstagram, 
+  FaSpotify, 
+  FaSoundcloud, 
+  FaYoutube, 
+  FaBandcamp,
+  FaTwitter 
+} from 'react-icons/fa';
+import type { IconType } from 'react-icons';
 
 interface SocialLink {
   name: string;
   url: string;
-  icon: string;
+  icon: IconType;
 }
 
 // Placeholder social links - replace with actual URLs
 const socialLinks: SocialLink[] = [
-  { name: 'Instagram', url: 'https://instagram.com', icon: '📷' },
-  { name: 'Spotify', url: 'https://spotify.com', icon: '🎵' },
-  { name: 'SoundCloud', url: 'https://soundcloud.com', icon: '🎧' },
-  { name: 'YouTube', url: 'https://youtube.com', icon: '▶️' },
-  { name: 'Bandcamp', url: 'https://bandcamp.com', icon: '💿' },
-  { name: 'Twitter', url: 'https://twitter.com', icon: '🐦' },
+  { name: 'Instagram', url: 'https://instagram.com', icon: FaInstagram },
+  { name: 'Spotify', url: 'https://spotify.com', icon: FaSpotify },
+  { name: 'SoundCloud', url: 'https://soundcloud.com', icon: FaSoundcloud },
+  { name: 'YouTube', url: 'https://youtube.com', icon: FaYoutube },
+  { name: 'Bandcamp', url: 'https://bandcamp.com', icon: FaBandcamp },
+  { name: 'Twitter', url: 'https://twitter.com', icon: FaTwitter },
 ];
 
 export default function SocialHub() {
@@ -65,8 +74,13 @@ export default function SocialHub() {
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="text-4xl md:text-5xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                {link.icon}
+              <div className="mb-2 group-hover:scale-110 transition-transform duration-300">
+                {(() => {
+                  const IconComponent = link.icon;
+                  return (
+                    <IconComponent className="text-4xl md:text-5xl text-gray-700 group-hover:text-[#960018] transition-colors duration-300" />
+                  );
+                })()}
               </div>
               <span className="text-sm md:text-base uppercase tracking-wider font-grotesk text-gray-700 group-hover:text-[#960018] transition-colors duration-300">
                 {link.name}

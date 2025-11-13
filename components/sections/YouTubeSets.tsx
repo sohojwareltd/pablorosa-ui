@@ -51,6 +51,11 @@ export default function YouTubeSets() {
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
           className="mb-16"
         >
+          <div className="mb-4">
+            <span className="text-xs uppercase tracking-[0.2em] text-gray-400 font-grotesk">
+              Finished Work
+            </span>
+          </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 uppercase tracking-tight">
             YouTube Sets
           </h2>

@@ -18,12 +18,26 @@ export default function Home() {
       <Navigation />
       <main className="relative">
         <Hero />
-        <Music />
-        <Gallery />
-        <YouTubeSets />
-        <FieldJournal />
-        <SocialHub />
-        <Contact />
+        
+        {/* Finished Work Section */}
+        <div className="relative">
+          <Music />
+          <Gallery />
+          <YouTubeSets />
+        </div>
+
+        {/* Process & Philosophy Section */}
+        <div className="relative">
+          {/* Visual divider between Finished Work and Process */}
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          <FieldJournal />
+        </div>
+
+        {/* Connection Section */}
+        <div className="relative">
+          <SocialHub />
+          <Contact />
+        </div>
       </main>
       
       <footer className="py-12 px-6 md:px-12 text-center text-sm text-gray-500 uppercase tracking-wider font-grotesk">

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Artwork {
   id: number;
@@ -11,14 +12,12 @@ interface Artwork {
   year?: string;
 }
 
-// Placeholder artwork data - replace with actual images
+// Cover art images from public/coverart folder
 const artworks: Artwork[] = [
-  { id: 1, title: 'Cover Art 01', image: '/api/placeholder/600/800', year: '2024' },
-  { id: 2, title: 'Cover Art 02', image: '/api/placeholder/800/600', year: '2024' },
-  { id: 3, title: 'Cover Art 03', image: '/api/placeholder/700/700', year: '2023' },
-  { id: 4, title: 'Cover Art 04', image: '/api/placeholder/900/600', year: '2023' },
-  { id: 5, title: 'Cover Art 05', image: '/api/placeholder/600/900', year: '2022' },
-  { id: 6, title: 'Cover Art 06', image: '/api/placeholder/800/800', year: '2022' },
+  { id: 1, title: 'Cover Art 01', image: '/coverart/art1.jpg', year: '2024' },
+  { id: 2, title: 'Cover Art 02', image: '/coverart/art2.jpg', year: '2024' },
+  { id: 3, title: 'Cover Art 03', image: '/coverart/art3.jpg', year: '2023' },
+  { id: 4, title: 'Cover Art 04', image: '/coverart/art4.jpg', year: '2023' },
 ];
 
 export default function Gallery() {
@@ -28,14 +27,12 @@ export default function Gallery() {
   });
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  // Asymmetric grid layout
+  // Clean grid layout - 2 columns on desktop
   const gridClasses = [
-    'md:col-span-2 md:row-span-2',
     'md:col-span-1',
-    'md:col-span-1 md:row-span-2',
-    'md:col-span-2',
     'md:col-span-1',
-    'md:col-span-2 md:row-span-1',
+    'md:col-span-1',
+    'md:col-span-1',
   ];
 
   return (
@@ -51,6 +48,11 @@ export default function Gallery() {
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
           className="mb-16"
         >
+          <div className="mb-4">
+            <span className="text-xs uppercase tracking-[0.2em] text-gray-500 font-grotesk">
+              Finished Work
+            </span>
+          </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 uppercase tracking-tight">
             Cover Art
           </h2>
@@ -59,14 +61,14 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12">
           {artworks.map((artwork, index) => (
             <motion.div
               key={artwork.id}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
-              className={`relative overflow-hidden bg-gray-100 ${gridClasses[index]} aspect-[3/4] md:aspect-auto`}
+              transition={{ duration: 0.8, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
+              className={`relative overflow-hidden bg-gray-100 ${gridClasses[index]} aspect-[3/4] min-h-[500px] md:min-h-0`}
               onMouseEnter={() => setHoveredId(artwork.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -77,11 +79,18 @@ export default function Gallery() {
                 transition={{ duration: 0.3 }}
               />
               
-              {/* Placeholder for image - replace with Next.js Image component */}
-              <div className="w-full h-full bg-gray-200 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                  {artwork.title}
-                </div>
+              {/* Image with Next.js Image component */}
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  src={artwork.image}
+                  alt={artwork.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 600px"
+                  quality={90}
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  priority={index === 0}
+                />
               </div>
 
               <motion.div
