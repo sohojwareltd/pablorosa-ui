@@ -12,7 +12,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
@@ -28,7 +27,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash) {
-        const element = document.querySelector(hash);
+        const element = document.querySelector(hash) as HTMLElement;
         if (element) {
           lenis.scrollTo(element, { offset: -100, duration: 1.5 });
         }
