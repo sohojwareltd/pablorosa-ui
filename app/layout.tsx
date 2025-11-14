@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { MusicPlayerProvider } from "@/contexts/MusicPlayerContext";
+import MusicPlayerDrawer from "@/components/MusicPlayerDrawer";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -45,7 +47,10 @@ export default function RootLayout({
       <body
         className={`${playfairDisplay.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased bg-white text-black`}
       >
-        {children}
+        <MusicPlayerProvider>
+          {children}
+          <MusicPlayerDrawer />
+        </MusicPlayerProvider>
       </body>
     </html>
   );

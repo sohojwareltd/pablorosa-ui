@@ -219,7 +219,7 @@ export default function AlbumHero() {
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="relative max-w-2xl mx-auto lg:mx-0"
+            className="relative w-full lg:max-w-2xl lg:mx-0"
           >
             {/* Hidden Audio Element */}
             <audio ref={audioRef} src={latestAlbum.demoAudioUrl} preload="metadata" />
