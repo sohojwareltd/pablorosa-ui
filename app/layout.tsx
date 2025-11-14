@@ -3,6 +3,8 @@ import { Playfair_Display, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { MusicPlayerProvider } from "@/contexts/MusicPlayerContext";
 import MusicPlayerDrawer from "@/components/MusicPlayerDrawer";
+import { GalleryLightboxProvider } from "@/contexts/GalleryLightboxContext";
+import GalleryLightbox from "@/components/GalleryLightbox";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -48,8 +50,11 @@ export default function RootLayout({
         className={`${playfairDisplay.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased bg-white text-black`}
       >
         <MusicPlayerProvider>
-          {children}
-          <MusicPlayerDrawer />
+          <GalleryLightboxProvider>
+            {children}
+            <MusicPlayerDrawer />
+            <GalleryLightbox />
+          </GalleryLightboxProvider>
         </MusicPlayerProvider>
       </body>
     </html>

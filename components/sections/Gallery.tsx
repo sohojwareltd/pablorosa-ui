@@ -4,16 +4,10 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
 import Image from 'next/image';
-
-interface Artwork {
-  id: number;
-  title: string;
-  image: string;
-  year?: string;
-}
+import { useGalleryLightbox, type Artwork } from '@/contexts/GalleryLightboxContext';
 
 // Cover art images from public/coverart folder
-const artworks: Artwork[] = [
+export const artworks: Artwork[] = [
   { id: 1, title: 'Cover Art 01', image: '/coverart/art1.jpg', year: '2024' },
   { id: 2, title: 'Cover Art 02', image: '/coverart/art2.jpg', year: '2024' },
   { id: 3, title: 'Cover Art 03', image: '/coverart/art3.jpg', year: '2023' },
@@ -26,14 +20,28 @@ export default function Gallery() {
     triggerOnce: true,
   });
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const { openLightbox } = useGalleryLightbox();
 
-  // Interlocking grid pattern by varying row spans
+  // Horizontal interlocking grid pattern by varying column spans
+  // Creates a masonry-like horizontal flow with alternating widths
   const layoutPattern = [
-    'md:row-span-3',
-    'md:row-span-2',
-    'md:row-span-2 lg:row-span-3',
-    'md:row-span-3',
+    'md:col-span-2 lg:col-span-2', // Wide - spans 2 columns
+    'md:col-span-1 lg:col-span-1', // Narrow - spans 1 column
+    'md:col-span-1 lg:col-span-1', // Narrow - spans 1 column
+    'md:col-span-2 lg:col-span-2', // Wide - spans 2 columns
   ];
+  
+  // Row heights for interlocking effect
+  const rowHeights = [
+    'md:row-span-1 lg:row-span-2', // Taller
+    'md:row-span-1 lg:row-span-1', // Standard
+    'md:row-span-1 lg:row-span-1', // Standard
+    'md:row-span-1 lg:row-span-2', // Taller
+  ];
+
+  const handleImageClick = (index: number) => {
+    openLightbox(artworks, index);
+  };
 
   return (
     <section
@@ -61,17 +69,20 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 auto-rows-[220px] md:auto-rows-[260px] lg:auto-rows-[320px]">
+        {/* Horizontal Interlocking Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 auto-rows-[280px] md:auto-rows-[300px] lg:auto-rows-[350px]">
           {artworks.map((artwork, index) => (
-            <motion.div
+            <motion.button
               key={artwork.id}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
-              className={`relative overflow-hidden bg-gray-100 ${layoutPattern[index % layoutPattern.length]} min-h-[320px] md:min-h-0 md:h-full group`}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
+              className={`relative overflow-hidden bg-gray-100 ${layoutPattern[index % layoutPattern.length]} ${rowHeights[index % rowHeights.length]} min-h-[280px] md:min-h-[300px] lg:min-h-[350px] group cursor-pointer w-full text-left`}
               onMouseEnter={() => setHoveredId(artwork.id)}
               onMouseLeave={() => setHoveredId(null)}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handleImageClick(index)}
             >
               {/* Colorful border on hover */}
               <motion.div
@@ -154,8 +165,28 @@ export default function Gallery() {
                     {artwork.year}
                   </p>
                 )}
+                <p className="text-white/60 text-xs uppercase tracking-wider font-grotesk mt-2">
+                  Click to view
+                </p>
               </motion.div>
-            </motion.div>
+              
+              {/* Click indicator icon */}
+              <motion.div
+                className="absolute top-4 right-4 z-20"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: hoveredId === artwork.id ? 1 : 0,
+                  scale: hoveredId === artwork.id ? 1 : 0.8,
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+              </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>
