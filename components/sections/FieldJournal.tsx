@@ -94,13 +94,40 @@ export default function FieldJournal() {
           className="mb-16"
         >
           <div className="mb-4">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#960018] font-grotesk">
+            <motion.span
+              className="text-xs uppercase tracking-[0.2em] font-grotesk inline-block"
+              animate={{
+                color: ['#960018', '#6b46c1', '#2563eb', '#ea580c', '#960018'],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
               Process & Philosophy
-            </span>
+            </motion.span>
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 uppercase tracking-tight">
+          <motion.h2
+            className="text-4xl md:text-6xl lg:text-7xl font-serif mb-6 uppercase tracking-tight relative inline-block"
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+            style={{
+              backgroundImage: 'linear-gradient(90deg, #000 0%, #960018 25%, #6b46c1 50%, #2563eb 75%, #000 100%)',
+              backgroundSize: '200% 100%',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             Field Journal
-          </h2>
+          </motion.h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl leading-relaxed">
             Ideas, notes, philosophies, and behind-the-scenes moments from the creative process. A studio in motion.
           </p>
@@ -113,16 +140,69 @@ export default function FieldJournal() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
-              className={`break-inside-avoid mb-6 md:mb-8 p-6 md:p-8 bg-gray-50 hover:bg-gray-100 transition-colors duration-500 relative ${
-                entry.type === 'quote' ? 'border-l-4 border-[#960018]' : ''
+              className={`break-inside-avoid mb-6 md:mb-8 p-6 md:p-8 bg-gray-50 hover:bg-gray-100 transition-colors duration-500 relative group ${
+                entry.type === 'quote' ? 'border-l-4' : ''
               } ${
                 entry.category === 'work-in-progress' ? 'ring-1 ring-gray-300 ring-dashed' : ''
               } ${
-                entry.type === 'behind-the-scenes' ? 'border-l-2 border-gray-300' : ''
+                entry.type === 'behind-the-scenes' ? 'border-l-2' : ''
               } ${
-                entry.type === 'idea' ? 'bg-white border border-gray-200' : ''
+                entry.type === 'idea' ? 'bg-white border' : ''
               }`}
             >
+              {/* Animated border for quotes */}
+              {entry.type === 'quote' && (
+                <motion.div
+                  className="absolute left-0 top-0 bottom-0 w-1"
+                  animate={{
+                    backgroundColor: [
+                      'rgba(150, 0, 24, 1)',
+                      'rgba(107, 70, 193, 1)',
+                      'rgba(37, 99, 235, 1)',
+                      'rgba(234, 88, 12, 1)',
+                      'rgba(150, 0, 24, 1)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                />
+              )}
+              
+              {/* Animated border for behind-the-scenes */}
+              {entry.type === 'behind-the-scenes' && (
+                <motion.div
+                  className="absolute left-0 top-0 bottom-0 w-0.5"
+                  animate={{
+                    backgroundColor: [
+                      'rgba(107, 70, 193, 0.6)',
+                      'rgba(37, 99, 235, 0.6)',
+                      'rgba(150, 0, 24, 0.6)',
+                      'rgba(234, 88, 12, 0.6)',
+                      'rgba(107, 70, 193, 0.6)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                />
+              )}
+              
+              {/* Animated gradient overlay on hover */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
+                style={{
+                  background: `linear-gradient(135deg, 
+                    rgba(150, 0, 24, 0.03) 0%, 
+                    rgba(107, 70, 193, 0.03) 50%, 
+                    rgba(37, 99, 235, 0.03) 100%)`,
+                }}
+                transition={{ duration: 0.3 }}
+              />
               {/* Entry type label */}
               {(entry.type === 'sketch' || entry.type === 'behind-the-scenes' || entry.type === 'idea' || entry.type === 'philosophy') && (
                 <div className="mb-3">
@@ -151,10 +231,23 @@ export default function FieldJournal() {
                   )}
                 </blockquote>
               ) : entry.type === 'idea' ? (
-                <div className="space-y-4">
+                <div className="space-y-4 relative z-10">
                   <div className="flex items-start gap-3">
-                    <span className="text-[#960018] text-xl">•</span>
-                    <p className="text-base md:text-lg leading-relaxed text-gray-700 flex-1">
+                    <motion.span
+                      className="text-xl relative z-10"
+                      animate={{
+                        color: ['#960018', '#6b46c1', '#2563eb', '#ea580c', '#960018'],
+                        scale: [1, 1.2, 1],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    >
+                      •
+                    </motion.span>
+                    <p className="text-base md:text-lg leading-relaxed text-gray-700 flex-1 relative z-10">
                       {entry.content}
                     </p>
                   </div>

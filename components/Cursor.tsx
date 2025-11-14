@@ -76,13 +76,39 @@ export default function Cursor() {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className={`rounded-full bg-[#960018] transition-all duration-300 ${
+        className={`rounded-full transition-all duration-300 ${
           isHovering ? 'w-12 h-12 opacity-50' : 'w-4 h-4 opacity-100'
         }`}
         animate={{
           scale: isHovering ? 1.5 : 1,
+          backgroundColor: [
+            '#960018',
+            '#6b46c1',
+            '#2563eb',
+            '#ea580c',
+            '#960018',
+          ],
+          boxShadow: [
+            '0 0 20px rgba(150, 0, 24, 0.5)',
+            '0 0 20px rgba(107, 70, 193, 0.5)',
+            '0 0 20px rgba(37, 99, 235, 0.5)',
+            '0 0 20px rgba(234, 88, 12, 0.5)',
+            '0 0 20px rgba(150, 0, 24, 0.5)',
+          ],
         }}
-        transition={{ duration: 0.3 }}
+        transition={{
+          backgroundColor: {
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          },
+          boxShadow: {
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          },
+          scale: { duration: 0.3 },
+        }}
       />
     </motion.div>
   );

@@ -27,12 +27,12 @@ export default function Gallery() {
   });
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  // Clean grid layout - 2 columns on desktop
-  const gridClasses = [
-    'md:col-span-1',
-    'md:col-span-1',
-    'md:col-span-1',
-    'md:col-span-1',
+  // Interlocking grid pattern by varying row spans
+  const layoutPattern = [
+    'md:row-span-3',
+    'md:row-span-2',
+    'md:row-span-2 lg:row-span-3',
+    'md:row-span-3',
   ];
 
   return (
@@ -61,23 +61,67 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 auto-rows-[220px] md:auto-rows-[260px] lg:auto-rows-[320px]">
           {artworks.map((artwork, index) => (
             <motion.div
               key={artwork.id}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
-              className={`relative overflow-hidden bg-gray-100 ${gridClasses[index]} aspect-[3/4] min-h-[500px] md:min-h-0`}
+              className={`relative overflow-hidden bg-gray-100 ${layoutPattern[index % layoutPattern.length]} min-h-[320px] md:min-h-0 md:h-full group`}
               onMouseEnter={() => setHoveredId(artwork.id)}
               onMouseLeave={() => setHoveredId(null)}
+              whileHover={{ scale: 1.03 }}
             >
+              {/* Colorful border on hover */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+                className="absolute inset-0 border-4 pointer-events-none z-30"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: hoveredId === artwork.id ? 1 : 0,
+                  borderColor: [
+                    'rgba(150, 0, 24, 0.6)',
+                    'rgba(107, 70, 193, 0.6)',
+                    'rgba(37, 99, 235, 0.6)',
+                    'rgba(234, 88, 12, 0.6)',
+                    'rgba(150, 0, 24, 0.6)',
+                  ],
+                }}
+                transition={{
+                  opacity: { duration: 0.3 },
+                  borderColor: {
+                    duration: 2,
+                    repeat: hoveredId === artwork.id ? Infinity : 0,
+                    ease: 'easeInOut',
+                  },
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 z-10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: hoveredId === artwork.id ? 1 : 0 }}
                 transition={{ duration: 0.3 }}
-              />
+              >
+                {/* Animated gradient overlay on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
+                  animate={{
+                    background: hoveredId === artwork.id
+                      ? [
+                          'linear-gradient(to top, rgba(150, 0, 24, 0.7), transparent)',
+                          'linear-gradient(to top, rgba(107, 70, 193, 0.7), transparent)',
+                          'linear-gradient(to top, rgba(37, 99, 235, 0.7), transparent)',
+                          'linear-gradient(to top, rgba(150, 0, 24, 0.7), transparent)',
+                        ]
+                      : 'linear-gradient(to top, rgba(0, 0, 0, 0), transparent)',
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: hoveredId === artwork.id ? Infinity : 0,
+                    ease: 'easeInOut',
+                  }}
+                />
+              </motion.div>
               
               {/* Image with Next.js Image component */}
               <div className="absolute inset-0 w-full h-full">

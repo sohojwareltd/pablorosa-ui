@@ -83,11 +83,16 @@ export default function InteractiveBackground() {
           [-orb.size * 0.15, orb.size * 0.15]
         );
 
-        // Alternate between carmine red and gray tones
-        const isCarmine = index % 3 === 0;
-        const gradientColor = isCarmine 
-          ? 'rgba(150, 0, 24, 0.08)' 
-          : 'rgba(138, 138, 138, 0.05)';
+        // Rotate through different colors
+        const colorIndex = index % 5;
+        const colorMap = [
+          { color: 'rgba(150, 0, 24, 0.12)', name: 'carmine' },      // Carmine red
+          { color: 'rgba(107, 70, 193, 0.10)', name: 'purple' },     // Purple
+          { color: 'rgba(37, 99, 235, 0.10)', name: 'blue' },        // Blue
+          { color: 'rgba(234, 88, 12, 0.10)', name: 'orange' },      // Orange
+          { color: 'rgba(138, 138, 138, 0.06)', name: 'gray' },      // Gray
+        ];
+        const gradientColor = colorMap[colorIndex].color;
 
         return (
           <motion.div
@@ -105,8 +110,9 @@ export default function InteractiveBackground() {
             animate={{
               x: orb.animX,
               y: orb.animY,
-              scale: [1, 1.2, 0.8, 1],
-              opacity: [0.3, 0.5, 0.4, 0.3],
+              scale: [1, 1.3, 0.9, 1.1, 1],
+              opacity: [0.2, 0.6, 0.3, 0.5, 0.2],
+              rotate: [0, 180, 360],
             }}
             transition={{
               duration: orb.duration,
@@ -118,32 +124,37 @@ export default function InteractiveBackground() {
         );
       })}
 
-      {/* Floating particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
-        <motion.div
-          key={`particle-${i}`}
-          className="absolute rounded-full"
-          style={{
-            width: 2 + Math.random() * 4,
-            height: 2 + Math.random() * 4,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: Math.random() > 0.7 ? '#960018' : '#8a8a8a',
-            opacity: 0.2,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, (Math.random() - 0.5) * 20, 0],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: Math.random() * 5,
-          }}
-        />
-      ))}
+      {/* Floating particles with more colors */}
+      {Array.from({ length: 30 }).map((_, i) => {
+        const colorOptions = ['#960018', '#6b46c1', '#2563eb', '#ea580c', '#8a8a8a'];
+        const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        return (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: 2 + Math.random() * 5,
+              height: 2 + Math.random() * 5,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: randomColor,
+              opacity: 0.25,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, (Math.random() - 0.5) * 30, 0],
+              opacity: [0.2, 0.6, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 6 + Math.random() * 6,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: Math.random() * 5,
+            }}
+          />
+        );
+      })}
 
       {/* Subtle grid pattern */}
       <div 
