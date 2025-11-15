@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useMusicPlayer } from '@/contexts/MusicPlayerContext';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useMusicPlayer } from "@/contexts/MusicPlayerContext";
 
 interface Track {
   embedUrl: string;
@@ -23,40 +23,46 @@ export default function Music() {
   // Format: https://open.spotify.com/embed/track/TRACK_ID?utm_source=generator
   const tracks: Track[] = [
     {
-      embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
-      title: 'Track Title 1',
-      artist: 'Pablo Rosa',
-      duration: '3:45',
+      embedUrl:
+        "https://open.spotify.com/embed/track/0VjIjW4GlUZAMYd2vXMi3b?utm_source=generator",
+      title: "Blinding Lights",
+      artist: "The Weeknd",
+      duration: "3:45",
     },
     {
-      embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
-      title: 'Track Title 2',
-      artist: 'Pablo Rosa',
-      duration: '4:12',
+      embedUrl:
+        "https://open.spotify.com/embed/track/463CkQjx2Zk1yXoBuierM9?utm_source=generator",
+      title: "Levitating",
+      artist: "Dua Lipa",
+      duration: "4:12",
     },
     {
-      embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
-      title: 'Track Title 3',
-      artist: 'Pablo Rosa',
-      duration: '3:28',
+      embedUrl:
+        "https://open.spotify.com/embed/track/5PjdY0CKGZdEuaJJ0a0ySM?utm_source=generator",
+      title: "Stay",
+      artist: "The Kid LAROI & Justin Bieber",
+      duration: "3:28",
     },
     {
-      embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
-      title: 'Track Title 4',
-      artist: 'Pablo Rosa',
-      duration: '5:02',
+      embedUrl:
+        "https://open.spotify.com/embed/track/4LRPiXqCikLlN15c3yImP7?utm_source=generator",
+      title: "As It Was",
+      artist: "Harry Styles",
+      duration: "5:02",
     },
     {
-      embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
-      title: 'Track Title 5',
-      artist: 'Pablo Rosa',
-      duration: '4:35',
+      embedUrl:
+        "https://open.spotify.com/embed/track/4rPjSQWXHeYDFtDFdZJLW0?utm_source=generator",
+      title: "Bad Habit",
+      artist: "Steve Lacy",
+      duration: "4:35",
     },
     {
-      embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
-      title: 'Track Title 6',
-      artist: 'Pablo Rosa',
-      duration: '3:15',
+      embedUrl:
+        "https://open.spotify.com/embed/track/02MWAaffLxlfxAUY7c5dvx?utm_source=generator",
+      title: "Heat Waves",
+      artist: "Glass Animals",
+      duration: "3:15",
     },
   ];
 
@@ -68,14 +74,14 @@ export default function Music() {
     >
       {/* Grid background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div 
+        <div
           className="w-full h-full"
           style={{
             backgroundImage: `
               linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px',
+            backgroundSize: "50px 50px",
           }}
         />
       </div>
@@ -84,15 +90,16 @@ export default function Music() {
       <motion.div
         className="absolute inset-0 pointer-events-none z-0"
         animate={{
-          backgroundPosition: ['0% 0%', '0% 100%'],
+          backgroundPosition: ["0% 0%", "0% 100%"],
         }}
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: 'linear',
+          ease: "linear",
         }}
         style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+          backgroundImage:
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)",
         }}
       />
 
@@ -131,7 +138,7 @@ export default function Music() {
               </motion.h2>
             </div>
           </div>
-          
+
           <motion.div
             className="flex items-center gap-4 text-gray-400 font-mono text-sm"
             initial={{ opacity: 0 }}
@@ -172,7 +179,7 @@ export default function Music() {
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                   </div>
                   <span className="text-xs font-mono text-gray-500">
-                    {String(index + 1).padStart(2, '0')}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
@@ -206,40 +213,60 @@ export default function Music() {
                     <motion.div
                       className="w-1 h-4 bg-white"
                       animate={{
-                        scaleY: selectedTrack?.embedUrl === track.embedUrl ? [1, 0.3, 1] : 0.3,
+                        scaleY:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? [1, 0.3, 1]
+                            : 0.3,
                       }}
                       transition={{
                         duration: 0.6,
-                        repeat: selectedTrack?.embedUrl === track.embedUrl ? Infinity : 0,
-                        ease: 'easeInOut',
+                        repeat:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? Infinity
+                            : 0,
+                        ease: "easeInOut",
                       }}
                     />
                     <motion.div
                       className="w-1 h-4 bg-white"
                       animate={{
-                        scaleY: selectedTrack?.embedUrl === track.embedUrl ? [1, 0.5, 1] : 0.3,
+                        scaleY:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? [1, 0.5, 1]
+                            : 0.3,
                       }}
                       transition={{
                         duration: 0.6,
                         delay: 0.1,
-                        repeat: selectedTrack?.embedUrl === track.embedUrl ? Infinity : 0,
-                        ease: 'easeInOut',
+                        repeat:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? Infinity
+                            : 0,
+                        ease: "easeInOut",
                       }}
                     />
                     <motion.div
                       className="w-1 h-4 bg-white"
                       animate={{
-                        scaleY: selectedTrack?.embedUrl === track.embedUrl ? [1, 0.7, 1] : 0.3,
+                        scaleY:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? [1, 0.7, 1]
+                            : 0.3,
                       }}
                       transition={{
                         duration: 0.6,
                         delay: 0.2,
-                        repeat: selectedTrack?.embedUrl === track.embedUrl ? Infinity : 0,
-                        ease: 'easeInOut',
+                        repeat:
+                          selectedTrack?.embedUrl === track.embedUrl
+                            ? Infinity
+                            : 0,
+                        ease: "easeInOut",
                       }}
                     />
                     <span className="ml-2 text-gray-500">
-                      {selectedTrack?.embedUrl === track.embedUrl ? 'PLAYING' : 'IDLE'}
+                      {selectedTrack?.embedUrl === track.embedUrl
+                        ? "PLAYING"
+                        : "IDLE"}
                     </span>
                   </div>
                 </div>
@@ -247,9 +274,9 @@ export default function Music() {
                 {/* Hover effect - scan line */}
                 <motion.div
                   className="absolute inset-0 pointer-events-none"
-                  initial={{ y: '-100%' }}
-                  whileHover={{ y: '100%' }}
-                  transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  initial={{ y: "-100%" }}
+                  whileHover={{ y: "100%" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
                   <div className="w-full h-1/2 bg-gradient-to-b from-white/5 to-transparent" />
                 </motion.div>
@@ -271,4 +298,3 @@ export default function Music() {
     </section>
   );
 }
-
