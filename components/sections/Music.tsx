@@ -38,9 +38,9 @@ export default function Music() {
     },
     {
       embedUrl:
-        "https://open.spotify.com/embed/track/5PjdY0CKGZdEuaJJ0a0ySM?utm_source=generator",
-      title: "Stay",
-      artist: "The Kid LAROI & Justin Bieber",
+        "https://open.spotify.com/embed/track/0yLdNVWF3Srea0uzk55zFn?utm_source=generator",
+      title: "Flowers",
+      artist: "Miley Cyrus",
       duration: "3:28",
     },
     {
@@ -52,9 +52,9 @@ export default function Music() {
     },
     {
       embedUrl:
-        "https://open.spotify.com/embed/track/4rPjSQWXHeYDFtDFdZJLW0?utm_source=generator",
-      title: "Bad Habit",
-      artist: "Steve Lacy",
+        "https://open.spotify.com/embed/track/3nqQXoyQOWXiESFLlDF1hG?utm_source=generator",
+      title: "Unholy",
+      artist: "Sam Smith & Kim Petras",
       duration: "4:35",
     },
     {
