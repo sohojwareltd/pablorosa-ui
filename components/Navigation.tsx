@@ -20,22 +20,58 @@ export default function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => item.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
+      const viewportHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+      
+      let currentSection = sections[0]; // Default to first section
+      let maxVisibleArea = 0;
 
-      for (const section of sections) {
+      // Find the section with the most visible area in viewport
+      sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
+          const rect = element.getBoundingClientRect();
+          
+          // Calculate visible area of the section
+          const visibleTop = Math.max(0, -rect.top);
+          const visibleBottom = Math.min(rect.height, viewportHeight - rect.top);
+          const visibleArea = Math.max(0, visibleBottom - visibleTop);
+          
+          // If this section has more visible area, it's the active one
+          if (visibleArea > maxVisibleArea) {
+            maxVisibleArea = visibleArea;
+            currentSection = section;
           }
         }
+      });
+
+      // Special handling for top and bottom of page
+      if (scrollPosition < 50) {
+        currentSection = sections[0];
+      } else if (scrollPosition + viewportHeight >= document.documentElement.scrollHeight - 50) {
+        currentSection = sections[sections.length - 1];
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   useEffect(() => {
