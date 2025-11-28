@@ -516,8 +516,8 @@ export default function AlbumHero() {
                 Notes
               </motion.h2>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Music & Lyrics by PABLO ROSA<br />
-                Produced by PABLO ROSA<br />
+                Music & Lyrics by Musicista<br />
+                Produced by Musicista<br />
                 Recorded at various studios worldwide
               </p>
             </div>

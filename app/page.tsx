@@ -79,7 +79,7 @@ export default function Home() {
       </main>
       
       <footer className="py-12 px-6 md:px-12 text-center text-sm text-gray-500 uppercase tracking-wider font-grotesk">
-        <p>© {new Date().getFullYear()} Pablo Rosa. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Musicista. All rights reserved.</p>
       </footer>
     </SmoothScroll>
   );

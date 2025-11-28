@@ -1,0 +1,114 @@
+Musicista - Onepage Music Template
+
+[SHORT DESCRIPTION]
+Premium one-page portfolio template for musicians, artists, and creative professionals. Built with Next.js 16, featuring cinematic animations, modern design, and seamless media integration.
+
+[LONG DESCRIPTION]
+
+Modern Portfolio Template is a premium, fully responsive one-page portfolio template designed specifically for musicians, artists, and creative professionals. Built with cutting-edge technologies including Next.js 16, React 19, Tailwind CSS 4, and Framer Motion, this template offers a stunning visual experience with smooth animations and modern design patterns.
+
+KEY FEATURES:
+
+✨ Cinematic Animations
+- Smooth, elegant transitions powered by Framer Motion
+- Scroll-triggered animations
+- Interactive hover effects
+- Hardware-accelerated performance
+
+🎨 Modern Design System
+- Editorial-style typography
+- Asymmetric layouts
+- System/terminal-inspired UI elements
+- Custom color schemes easily customizable
+
+📱 Fully Responsive
+- Mobile-first design approach
+- Optimized for all screen sizes
+- Touch-friendly interactions
+- Adaptive layouts
+
+🎵 Media Integration
+- Spotify music player with drawer system
+- YouTube video embeds
+- Gallery with lightbox viewer
+- Audio player for album previews
+
+🎯 Sections Included:
+- Hero section with video background
+- Music catalog with system-style player
+- Album showcase with audio player
+- Gallery with interlocking grid and lightbox
+- YouTube sets/live performances
+- Tour dates slider
+- Field journal/blog section
+- Social hub with newsletter integration
+- Contact form
+
+🛠️ Technical Features:
+- Next.js 16 with App Router
+- TypeScript for type safety
+- Tailwind CSS 4 for styling
+- Framer Motion for animations
+- React 19
+- Optimized images with Next.js Image
+- Code splitting and lazy loading
+- SEO optimized
+- Fast page loads
+
+📦 What's Included:
+- Clean, well-organized code
+- Comprehensive documentation
+- Installation guide
+- Customization guide
+- Support documentation
+- All source files
+- No external dependencies required (except npm packages)
+
+🎓 Easy to Customize:
+- Well-commented code
+- Modular component structure
+- Clear file organization
+- TypeScript types throughout
+- Detailed customization guide
+
+🚀 Ready to Deploy:
+- Works with Vercel (recommended)
+- Compatible with Netlify, AWS, and more
+- Production-ready build
+- Optimized for performance
+
+PERFECT FOR:
+- Musicians and bands
+- Artists and designers
+- Creative professionals
+- Portfolio websites
+- Personal branding
+- Music labels
+- Event promoters
+
+BROWSER SUPPORT:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+REQUIREMENTS:
+- Node.js 18+
+- npm or yarn
+
+DOCUMENTATION:
+- Complete installation guide
+- Detailed customization guide
+- Support documentation
+- Code comments throughout
+
+LICENSE:
+GPL v2.0 - Regular License
+
+SUPPORT:
+Documentation-based support included. Clean, well-commented code makes customization easy.
+
+---
+
+Built with modern web technologies, designed for creative professionals.
+

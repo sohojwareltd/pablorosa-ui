@@ -1,6 +1,6 @@
-# Pablo Rosa — Portfolio Website
+# Modern Portfolio Template
 
-An immersive one-page portfolio website for Pablo Rosa, blending music, philosophy, and design. Built with Next.js, Tailwind CSS, and Framer Motion.
+A premium, immersive one-page portfolio template perfect for musicians, artists, and creative professionals. Features cinematic animations, modern design, and seamless media integration. Built with Next.js, Tailwind CSS, and Framer Motion.
 
 ## Features
 
@@ -155,10 +155,19 @@ npm start
 - Safari (latest)
 - Edge (latest)
 
+## Documentation
+
+For detailed guides, please refer to:
+- **[INSTALLATION.md](INSTALLATION.md)** - Step-by-step installation guide
+- **[CUSTOMIZATION.md](CUSTOMIZATION.md)** - Complete customization guide
+- **[SUPPORT.md](SUPPORT.md)** - Support policy and common issues
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history
+- **[CREDITS.md](CREDITS.md)** - Credits and attributions
+
 ## License
 
-© 2024 Pablo Rosa. All rights reserved.
+This template is licensed under GPL v2.0 for ThemeForest distribution.
 
 ---
 
-**Built with intention, designed for emotion.**
+**Built with modern technologies, designed for creative professionals.**

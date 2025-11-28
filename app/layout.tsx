@@ -29,11 +29,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Pablo Rosa — Music, Philosophy & Design",
+  title: "Musicista — Music, Philosophy & Design",
   description: "A global creative sanctuary — where music, identity, and philosophy breathe in rhythm.",
-  keywords: "Pablo Rosa, music, philosophy, design, artist, electronic music, creative",
+  keywords: "Musicista, music, philosophy, design, artist, electronic music, creative",
   openGraph: {
-    title: "Pablo Rosa — Music, Philosophy & Design",
+    title: "Musicista — Music, Philosophy & Design",
     description: "A global creative sanctuary — where music, identity, and philosophy breathe in rhythm.",
     type: "website",
   },

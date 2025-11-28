@@ -48,11 +48,11 @@ export default function Contact() {
           </p>
           
           <motion.a
-            href="mailto:hello@pablorosa.com"
+            href="mailto:hello@musicista.com"
             className="inline-block text-xl md:text-2xl text-[#960018] hover:underline font-grotesk transition-all duration-300"
             whileHover={{ x: 5 }}
           >
-            hello@pablorosa.com
+            hello@musicista.com
           </motion.a>
         </motion.div>
 

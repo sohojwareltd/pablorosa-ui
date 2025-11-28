@@ -246,7 +246,7 @@ export default function Navigation() {
                 transition={{ delay: 0.5 }}
                 className="text-xs text-gray-500 uppercase tracking-wider font-grotesk"
               >
-                Pablo Rosa © {new Date().getFullYear()}
+                Musicista © {new Date().getFullYear()}
               </motion.p>
             </div>
           </motion.nav>

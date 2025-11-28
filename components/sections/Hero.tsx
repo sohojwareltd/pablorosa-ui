@@ -94,7 +94,7 @@ export default function Hero() {
                 filter: 'drop-shadow(0 0 30px rgba(150, 0, 24, 0.5))',
               }}
             >
-              Pablo Rosa
+              Musicista
             </motion.span>
           </motion.h1>
 

@@ -25,37 +25,37 @@ export default function Music() {
     {
       embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
       title: 'Track Title 1',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '3:45',
     },
     {
       embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
       title: 'Track Title 2',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '4:12',
     },
     {
       embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
       title: 'Track Title 3',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '3:28',
     },
     {
       embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
       title: 'Track Title 4',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '5:02',
     },
     {
       embedUrl: 'https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator',
       title: 'Track Title 5',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '4:35',
     },
     {
       embedUrl: 'https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator',
       title: 'Track Title 6',
-      artist: 'Pablo Rosa',
+      artist: 'Musicista',
       duration: '3:15',
     },
   ];
